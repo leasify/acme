@@ -1,0 +1,152 @@
+{
+    "workspaceKeybindings.leasify.enabled": true,
+
+    /**
+    * Better Defaults
+    **/
+    "editor.copyWithSyntaxHighlighting": false,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.emptySelectionClipboard": false,
+    "workbench.editor.enablePreview": false,
+    "window.newWindowDimensions": "inherit",
+    "editor.multiCursorModifier": "ctrlCmd",
+    "files.trimTrailingWhitespace": true,
+    "diffEditor.renderSideBySide": false,
+    "editor.snippetSuggestions": "top",
+    "editor.detectIndentation": false,
+    "window.nativeFullScreen": false,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+
+    /**
+    * Hide Everything
+    */
+//    "workbench.activityBar.visible": false,
+    "workbench.sideBar.location": "right",
+    "workbench.statusBar.visible": false,
+    "workbench.editor.showTabs": "single",
+    "editor.minimap.enabled": false,
+	//"editor.lineNumbers": "off",
+
+    /**
+    * Silence The Noise
+    */
+    "breadcrumbs.enabled": false,
+    "scm.diffDecorations": "none",
+    "editor.hover.enabled": true,
+    "editor.matchBrackets": "never",
+    "workbench.tips.enabled": false,
+    "editor.colorDecorators": false,
+    "git.decorations.enabled": false,
+    "workbench.startupEditor": "none",
+    "editor.lightbulb.enabled": "off",
+    "editor.selectionHighlight": false,
+    "editor.overviewRulerBorder": false,
+    "editor.renderLineHighlight": "none",
+    "editor.occurrencesHighlight": "off",
+    "problems.decorations.enabled": false,
+    "editor.renderControlCharacters": false,
+    "editor.hideCursorInOverviewRuler": true,
+    "editor.gotoLocation.multipleReferences": "goto",
+    "editor.gotoLocation.multipleDefinitions": "goto",
+    "editor.gotoLocation.multipleDeclarations": "goto",
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "editor.gotoLocation.multipleImplementations": "goto",
+    "editor.gotoLocation.multipleTypeDefinitions": "goto",
+    "editor.fontFamily": "JetBrains Mono",
+    "editor.fontSize": 14,
+    "editor.lineHeight": 0,
+    "editor.suggestFontSize": 14,
+    "editor.suggestLineHeight": 28,
+    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.lineHeight": 1.5,
+
+    /**
+    * Find
+    **/
+    "search.useIgnoreFiles": false,
+    "search.exclude": {
+        // Hide everything in /vendor, except the "laravel" and "livewire" folder.
+        "**/vendor/{[^l],?[^ai]}*": true,
+        // Hide everything in /public, except "index.php"
+        "**/public/{[^i],?[^n]}*": true,
+        "**/node_modules": true,
+        "**/dist": true,
+        "**/_ide_helper.php": true,
+        "**/composer.lock": true,
+        "**/package-lock.json": true,
+        "storage": true,
+        ".phpunit.result.cache": true
+    },
+
+    "php-cs-fixer.executablePath": "${extensionPath}/php-cs-fixer.phar",
+    "php-cs-fixer.lastDownload": 1664178406229,
+    "pgsql.connections": [
+        {
+            "host": "localhost",
+            "dbname": "postgres",
+            "user": "postgres",
+            "password": "",
+            "emptyPasswordInput": false,
+            "port": "5432",
+            "connectTimeout": 15,
+            "encrypt": false,
+            "applicationName": "vscode-pgsql",
+            "hostaddr": "",
+            "options": "",
+            "sslmode": "prefer",
+            "clientEncoding": "",
+            "sslcompression": true,
+            "sslcert": "",
+            "sslkey": "",
+            "sslrootcert": "",
+            "sslcrl": "",
+            "requirepeer": ""
+        }
+    ],
+    "[php]": {
+        "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+    },
+    "todo-tree.tree.showScanModeButton": false,
+    "yaml.schemas": {
+        "file:///Users/aek/.vscode/extensions/atlassian.atlascode-2.8.6/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    },
+    "atlascode.jira.jqlList": [
+        {
+            "id": "4edf1f54-4ccd-4ac0-b8d0-34b604da091e",
+            "enabled": true,
+            "name": "My leasify Issues",
+            "query": "assignee = currentUser() AND resolution = Unresolved ORDER BY lastViewed DESC",
+            "siteId": "9dcae219-5759-4ab2-9e7d-9676f26f6ae1",
+            "monitor": true
+        },
+        {
+            "id": "bc43819e-2325-465a-9ab6-b3c61b4ecb38",
+            "siteId": "9dcae219-5759-4ab2-9e7d-9676f26f6ae1",
+            "name": "Sprintboard",
+            "query": "sprint in openSprints()",
+            "enabled": true,
+            "monitor": true
+        }
+    ],
+    "extensions.ignoreRecommendations": false,
+    "git.enableSmartCommit": true,
+    "sqltools.results": {
+        "location": "current"
+    },
+    "[sql]": {
+        "editor.defaultFormatter": "ms-ossdata.vscode-postgresql"
+    },
+    "[blade]": {
+        "editor.defaultFormatter": "shufo.vscode-blade-formatter"
+    },
+    "[markdown]": {
+        "editor.defaultFormatter": null,
+        "editor.formatOnSave": false
+    },
+    "files.participants.timeout": 1000,
+    "redhat.telemetry.enabled": false,
+    "liveshare.presence": true,
+    "editor.guides.indentation": false,
+    "CodeGPT.apiKey": "Ollama"
+}
