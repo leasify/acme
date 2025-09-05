@@ -17,7 +17,7 @@ export const Dashboard: React.FC = () => {
   const [selectedReport, setSelectedReport] = useState<Report | null>(null);
   const [refreshing, setRefreshing] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(25);
+  const [itemsPerPage] = useState(8);
 
   const loadData = async () => {
     try {
