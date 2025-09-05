@@ -41,6 +41,12 @@ export const Dashboard: React.FC = () => {
 
   useEffect(() => {
     loadData();
+
+    const interval = setInterval(() => {
+      loadData();
+    }, 5000);
+
+    return () => clearInterval(interval);
   }, []);
 
   const handleRefresh = () => {
