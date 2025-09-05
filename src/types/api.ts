@@ -43,6 +43,7 @@ export interface Report {
   years?: number;
   language?: string;
   linked_report_id?: number;
+  parent_id?: number;
   status: 'pending' | 'processing' | 'finished' | 'failed';
   created_at: string;
   updated_at: string;
