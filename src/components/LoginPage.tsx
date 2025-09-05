@@ -62,6 +62,13 @@ export const LoginPage: React.FC = () => {
               Streamlined lease accounting reports powered by Leasify API. 
               Generate, manage, and track your IFRS compliance reports with ease.
             </p>
+            
+            {/* Demo Notice */}
+            <div className="bg-accent-900/30 border border-accent-500/40 rounded-lg p-4 max-w-lg">
+              <p className="text-accent-300 text-sm">
+                <span className="font-semibold">Demo Project:</span> This is a simulation project to exemplify the Leasify API v3 capabilities and features.
+              </p>
+            </div>
 
             {/* Features */}
             <div className="grid sm:grid-cols-3 gap-6 pt-8">
