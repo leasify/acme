@@ -312,7 +312,7 @@ export const Dashboard: React.FC = () => {
                       return (
                         <Button
                           key={pageNum}
-                          variant={currentPage === pageNum ? "default" : "outline"}
+                          variant={currentPage === pageNum ? "primary" : "outline"}
                           size="sm"
                           onClick={() => handlePageChange(pageNum)}
                           className="w-8 h-8 p-0"
