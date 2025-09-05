@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Building2, Plus, FileText, Calendar, User, LogOut, RefreshCw } from 'lucide-react';
+import { Building2, Plus, FileText, Calendar, User, LogOut, RefreshCw, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { apiClient } from '../services/api';
 import { Report, Template } from '../types/api';
@@ -16,6 +16,8 @@ export const Dashboard: React.FC = () => {
   const [showDetailsModal, setShowDetailsModal] = useState(false);
   const [selectedReport, setSelectedReport] = useState<Report | null>(null);
   const [refreshing, setRefreshing] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(25);
 
   const loadData = async () => {
     try {
@@ -53,6 +55,28 @@ export const Dashboard: React.FC = () => {
   const handleRefresh = () => {
     setRefreshing(true);
     loadData();
+  };
+
+  // Pagination calculations
+  const totalPages = Math.ceil(reports.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentReports = reports.slice(startIndex, endIndex);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
   };
 
   const handleReportClick = (report: Report) => {
@@ -195,18 +219,18 @@ export const Dashboard: React.FC = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-700">
-                {reports.length === 0 ? (
+                {currentReports.length === 0 ? (
                   <tr>
                     <td colSpan={6} className="px-6 py-12 text-center">
                       <div className="space-y-3">
                         <FileText className="w-12 h-12 text-gray-600 mx-auto" />
-                        <p className="text-gray-400">No reports found</p>
-                        <p className="text-sm text-gray-500">Create your first report to get started</p>
+                        <p className="text-gray-400">{reports.length === 0 ? 'No reports found' : 'No reports on this page'}</p>
+                        <p className="text-sm text-gray-500">{reports.length === 0 ? 'Create your first report to get started' : 'Try a different page'}</p>
                       </div>
                     </td>
                   </tr>
                 ) : (
-                  reports.map((report) => (
+                  currentReports.map((report) => (
                     <tr 
                       key={report.id} 
                       className="hover:bg-gray-750 transition-colors cursor-pointer"
@@ -251,6 +275,68 @@ export const Dashboard: React.FC = () => {
               </tbody>
             </table>
           </div>
+
+          {/* Pagination */}
+          {reports.length > 0 && (
+            <div className="px-6 py-4 bg-gray-800 border-t border-gray-700">
+              <div className="flex items-center justify-between">
+                <div className="text-sm text-gray-400">
+                  Showing {startIndex + 1} to {Math.min(endIndex, reports.length)} of {reports.length} reports
+                </div>
+                
+                <div className="flex items-center space-x-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handlePrevPage}
+                    disabled={currentPage === 1}
+                    className="flex items-center space-x-1"
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                    <span>Previous</span>
+                  </Button>
+                  
+                  <div className="flex items-center space-x-1">
+                    {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                      let pageNum;
+                      if (totalPages <= 5) {
+                        pageNum = i + 1;
+                      } else if (currentPage <= 3) {
+                        pageNum = i + 1;
+                      } else if (currentPage >= totalPages - 2) {
+                        pageNum = totalPages - 4 + i;
+                      } else {
+                        pageNum = currentPage - 2 + i;
+                      }
+                      
+                      return (
+                        <Button
+                          key={pageNum}
+                          variant={currentPage === pageNum ? "default" : "outline"}
+                          size="sm"
+                          onClick={() => handlePageChange(pageNum)}
+                          className="w-8 h-8 p-0"
+                        >
+                          {pageNum}
+                        </Button>
+                      );
+                    })}
+                  </div>
+                  
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleNextPage}
+                    disabled={currentPage === totalPages}
+                    className="flex items-center space-x-1"
+                  >
+                    <span>Next</span>
+                    <ChevronRight className="w-4 h-4" />
+                  </Button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </main>
 
@@ -261,6 +347,7 @@ export const Dashboard: React.FC = () => {
         templates={templates}
         onSuccess={(newReport) => {
           setReports([newReport, ...reports]);
+          setCurrentPage(1); // Reset to first page to show the new report
           setShowCreateModal(false);
         }}
       />
