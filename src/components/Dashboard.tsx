@@ -24,8 +24,9 @@ export const Dashboard: React.FC = () => {
         apiClient.getTemplates()
       ]);
       
-      // Sort reports by created_at in descending order (most recent first)
-      const sortedReports = reportsData.sort((a, b) => 
+      // Filter out reports with parent_id and sort by created_at in descending order (most recent first)
+      const filteredReports = reportsData.filter(report => !report.parent_id);
+      const sortedReports = filteredReports.sort((a, b) => 
         new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
       );
       
