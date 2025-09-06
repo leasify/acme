@@ -25,13 +25,13 @@ export const Dashboard: React.FC = () => {
         apiClient.getReports(),
         apiClient.getTemplates()
       ]);
-      
+
       // Filter out reports with parent_id and sort by created_at in descending order (most recent first)
       const filteredReports = reportsData.filter(report => !report.parent_id);
-      const sortedReports = filteredReports.sort((a, b) => 
+      const sortedReports = filteredReports.sort((a, b) =>
         new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
       );
-      
+
       setReports(sortedReports);
       setTemplates(templatesData);
     } catch (error) {
@@ -231,8 +231,8 @@ export const Dashboard: React.FC = () => {
                   </tr>
                 ) : (
                   currentReports.map((report) => (
-                    <tr 
-                      key={report.id} 
+                    <tr
+                      key={report.id}
                       className="hover:bg-gray-750 transition-colors cursor-pointer"
                       onClick={() => handleReportClick(report)}
                     >
@@ -283,7 +283,7 @@ export const Dashboard: React.FC = () => {
                 <div className="text-sm text-gray-400">
                   Showing {startIndex + 1} to {Math.min(endIndex, reports.length)} of {reports.length} reports
                 </div>
-                
+
                 <div className="flex items-center space-x-2">
                   <Button
                     variant="outline"
@@ -295,7 +295,7 @@ export const Dashboard: React.FC = () => {
                     <ChevronLeft className="w-4 h-4" />
                     <span>Previous</span>
                   </Button>
-                  
+
                   <div className="flex items-center space-x-1">
                     {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
                       let pageNum;
@@ -308,7 +308,7 @@ export const Dashboard: React.FC = () => {
                       } else {
                         pageNum = currentPage - 2 + i;
                       }
-                      
+
                       return (
                         <Button
                           key={pageNum}
@@ -322,7 +322,7 @@ export const Dashboard: React.FC = () => {
                       );
                     })}
                   </div>
-                  
+
                   <Button
                     variant="outline"
                     size="sm"

@@ -31,7 +31,7 @@ const mockUser = {
   id: 1,
   email: 'test@acme.com',
   name: 'John Doe',
-  company: { id: 1, name: 'ACME Corporation' }
+  company: 'ACME Corporation'
 }
 
 const mockTemplates = [

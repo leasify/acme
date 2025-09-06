@@ -59,10 +59,10 @@ export const LoginPage: React.FC = () => {
               <span className="block text-accent-400">IFRS Reporting</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-lg">
-              Streamlined lease accounting reports powered by Leasify API. 
+              Streamlined lease accounting reports powered by Leasify API.
               Generate, manage, and track your IFRS compliance reports with ease.
             </p>
-            
+
             {/* Demo Notice */}
             <div className="bg-accent-900/30 border border-accent-500/40 rounded-lg p-4 max-w-lg">
               <p className="text-accent-300 text-sm">
@@ -100,7 +100,7 @@ export const LoginPage: React.FC = () => {
                 </div>
               </div>
             </div>
-            
+
             {/* GitHub Link */}
             <div className="flex justify-center lg:justify-start pt-8">
               <a
@@ -137,7 +137,7 @@ export const LoginPage: React.FC = () => {
                     placeholder="Enter your email"
                     required
                   />
-                  
+
                   <Input
                     label="Password"
                     type="password"
